@@ -7,12 +7,10 @@
     --muted: #a7aaae;
     --border: #3b3d40;
 
-    /* Nouvelle couleur principale */
     --accent: #56603d;
     --accent-hover: #768253;
     --accent-text: #ffffff;
 
-    /* Dimensions réduites */
     --header-height: 82px;
     --container-width: 1250px;
 

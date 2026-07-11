@@ -1,8 +1,5 @@
 "use strict";
 
-/* ==========================================================
-   THÈME CLAIR / SOMBRE
-   ========================================================== */
 
 const root = document.documentElement;
 const themeButton = document.querySelector(".theme-toggle");
@@ -10,10 +7,6 @@ const themeIcon = themeButton?.querySelector("span");
 
 const savedTheme = localStorage.getItem("theme");
 
-/*
- * Si aucun thème n'a été enregistré, le site utilise le thème
- * sombre comme sur la capture.
- */
 const initialTheme = savedTheme || "dark";
 
 applyTheme(initialTheme);
@@ -45,9 +38,6 @@ themeButton?.addEventListener("click", () => {
 });
 
 
-/* ==========================================================
-   MENU MOBILE
-   ========================================================== */
 
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".nav-links");
@@ -72,9 +62,6 @@ navigation?.querySelectorAll("a").forEach((link) => {
 });
 
 
-/* ==========================================================
-   LIEN ACTIF DE LA NAVIGATION
-   ========================================================== */
 
 const currentPage = document.body.dataset.page;
 
@@ -86,9 +73,6 @@ document.querySelectorAll("[data-nav]").forEach((link) => {
 });
 
 
-/* ==========================================================
-   ANNÉE ET DATE AUTOMATIQUES
-   ========================================================== */
 
 document.querySelectorAll("[data-current-year]").forEach((element) => {
     element.textContent = new Date().getFullYear();
@@ -101,18 +85,12 @@ document.querySelectorAll("[data-last-update]").forEach((element) => {
     }).format(new Date(document.lastModified));
 });
 
-/* ==========================================================
-   OUVERTURE DES RÉFÉRENCES BIBTEX
-   ========================================================== */
 
 const bibButtons = document.querySelectorAll(".bib-toggle");
 
 bibButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        /*
-         * On récupère la publication correspondant
-         * au bouton qui vient d'être cliqué.
-         */
+
         const publication = button.closest(".publication");
         const panel = publication?.querySelector(".bib-panel");
 
@@ -122,20 +100,12 @@ bibButtons.forEach((button) => {
 
         const willOpen = panel.hidden;
 
-        /*
-         * Facultatif : fermer les autres références avant
-         * d'ouvrir celle qui a été sélectionnée.
-         */
         closeAllBibPanels(button);
 
         panel.hidden = !willOpen;
         button.setAttribute("aria-expanded", String(willOpen));
 
         if (willOpen) {
-            /*
-             * Permet de sélectionner directement le texte
-             * avec le clavier après l'ouverture.
-             */
             panel.querySelector(".bib-copy")?.focus({
                 preventScroll: true
             });
@@ -143,10 +113,6 @@ bibButtons.forEach((button) => {
     });
 });
 
-
-/* ==========================================================
-   COPIE DU BIBTEX
-   ========================================================== */
 
 document.querySelectorAll(".bib-copy").forEach((copyButton) => {
     copyButton.addEventListener("click", async () => {
@@ -194,10 +160,6 @@ document.querySelectorAll(".bib-copy").forEach((copyButton) => {
 });
 
 
-/* ==========================================================
-   FERMER LES AUTRES FENÊTRES
-   ========================================================== */
-
 function closeAllBibPanels(buttonToKeep = null) {
     document.querySelectorAll(".bib-toggle").forEach((button) => {
         if (button === buttonToKeep) {
@@ -214,9 +176,6 @@ function closeAllBibPanels(buttonToKeep = null) {
         }
     });
 }
-
-
-/* Fermer la fenêtre avec la touche Échap */
 
 document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") {
