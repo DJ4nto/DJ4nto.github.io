@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Votre Nom | CV</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body data-page="cv">
+
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Navigation principale">
+            <a class="brand" href="index.html">
+                <strong>Votre</strong> Nom
+            </a>
+
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false"
+                aria-controls="main-menu"
+            >
+                ☰
+            </button>
+
+            <div class="nav-links" id="main-menu">
+                <a href="index.html" data-nav="about">À propos</a>
+                <a href="research.html" data-nav="research">Recherche</a>
+                <a href="cv.html" data-nav="cv">CV</a>
+                <a href="teaching.html" data-nav="teaching">Enseignement</a>
+
+                <button
+                    class="theme-toggle"
+                    type="button"
+                    aria-label="Activer le thème clair"
+                    title="Changer de thème"
+                >
+                    <span aria-hidden="true">☾</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container page">
+        <div class="title-row">
+            <h1 class="page-title">Curriculum vitæ</h1>
+
+            <a
+                class="button primary-button"
+                href="assets/cv.pdf"
+                target="_blank"
+            >
+                Télécharger le CV
+            </a>
+        </div>
+
+        <section class="content-section">
+            <h2>Formation</h2>
+
+            <div class="timeline">
+                <article class="timeline-item">
+                    <div class="timeline-date">2023–2026</div>
+
+                    <div>
+                        <h3>Doctorat en mathématiques</h3>
+
+                        <p>
+                            Nom de l'université — Nom du laboratoire
+                        </p>
+
+                        <p class="muted">
+                            Sujet : « Titre ou résumé de votre thèse ».
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-date">2021–2023</div>
+
+                    <div>
+                        <h3>Master en mathématiques</h3>
+
+                        <p>Nom de l'université</p>
+
+                        <p class="muted">
+                            Spécialité : votre spécialité.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-date">2018–2021</div>
+
+                    <div>
+                        <h3>Licence en mathématiques</h3>
+
+                        <p>Nom de l'établissement</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Expériences</h2>
+
+            <div class="timeline">
+                <article class="timeline-item">
+                    <div class="timeline-date">2025</div>
+
+                    <div>
+                        <h3>Séjour de recherche</h3>
+
+                        <p>Université ou laboratoire d'accueil</p>
+
+                        <p class="muted">
+                            Description courte du projet réalisé.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-date">2023–2026</div>
+
+                    <div>
+                        <h3>Enseignement universitaire</h3>
+
+                        <p>
+                            Travaux dirigés, travaux pratiques et encadrement.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Compétences</h2>
+
+            <div class="skills">
+                <span>Python</span>
+                <span>MATLAB</span>
+                <span>LaTeX</span>
+                <span>JavaScript</span>
+                <span>Calcul scientifique</span>
+                <span>Analyse de données</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span data-current-year></span> Votre Nom.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
