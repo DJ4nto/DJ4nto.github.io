@@ -1,17 +1,64 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
+
+    <script>
+        (() => {
+            try {
+                const savedTheme = localStorage.getItem("theme");
+
+                document.documentElement.dataset.theme =
+                    savedTheme === "light" ? "light" : "dark";
+            } catch {
+                document.documentElement.dataset.theme = "dark";
+            }
+        })();
+    </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio académique de Antonin Lecocq : recherche, publications et enseignement.">
+
+    <meta
+        name="description"
+        content="Portfolio académique d’Antonin Lecocq : parcours, recherche et publications."
+    >
+
     <title>Antonin Lecocq | Accueil</title>
+
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        window.MathJax = {
+            startup: {
+                typeset: false
+            },
+            tex: {
+                inlineMath: [
+                    ["\$", "\$"]
+                ]
+            },
+            options: {
+                skipHtmlTags: [
+                    "script",
+                    "noscript",
+                    "style",
+                    "textarea",
+                    "pre",
+                    "code"
+                ]
+            }
+        };
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        defer
+    ></script>
+
     <script src="script.js" defer></script>
 </head>
 
 <body data-page="about">
-
     <header class="site-header">
         <nav class="navbar container" aria-label="Navigation principale">
             <a class="brand" href="index.html">
@@ -25,39 +72,68 @@
                 aria-expanded="false"
                 aria-controls="main-menu"
             >
-                ☰
+                <span aria-hidden="true">☰</span>
             </button>
 
             <div class="nav-links" id="main-menu">
-                <a href="index.html" data-nav="about">À propos</a>
-                <a href="research.html" data-nav="research">Recherche</a>
-                <a href="cv.html" data-nav="cv">CV</a>
+                <a href="index.html" data-nav="about" data-i18n="nav.about">
+                    À propos
+                </a>
 
-                <button
-                    class="theme-toggle"
-                    type="button"
-                    aria-label="Activer le thème clair"
-                    title="Changer de thème"
+                <a
+                    href="research.html"
+                    data-nav="research"
+                    data-i18n="nav.research"
                 >
-                    <span aria-hidden="true">☾</span>
-                </button>
+                    Recherche
+                </a>
+
+                <a href="cv.html" data-nav="cv" data-i18n="nav.cv">
+                    CV
+                </a>
+
+                <div class="nav-actions">
+                    <button
+                        class="language-toggle"
+                        type="button"
+                        aria-label="Passer en anglais"
+                        title="Passer en anglais"
+                    >
+                        <span aria-hidden="true">EN</span>
+                    </button>
+
+                    <button
+                        class="theme-toggle"
+                        type="button"
+                        aria-label="Activer le thème clair"
+                        title="Activer le thème clair"
+                    >
+                        <span aria-hidden="true">☾</span>
+                    </button>
+                </div>
             </div>
         </nav>
     </header>
 
     <main class="container page">
-        <section class="profile-section">
+        <section class="profile-section" aria-labelledby="profile-title">
             <div class="profile-content">
-                <h1><strong>Antonin</strong> Lecocq</h1>
+                <h1 id="profile-title">
+                    <strong>Antonin</strong> Lecocq
+                </h1>
 
-                <p>
-                    Je suis étudiant en mathématiques à l'
-                    <a href="https://dauphine.psl.eu/" target="_blank" rel="noopener">Université Paris Dauphine - PSL</a>
+                <p data-i18n-html="about.intro">
+                    Je suis étudiant en mathématiques à
+                    l’<a
+                        href="https://dauphine.psl.eu/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >Université Paris Dauphine – PSL</a>.
                 </p>
 
                 <div class="contact-list">
                     <div>
-                        <strong>Contact :</strong>
+                        <strong data-i18n="about.contact">Contact:</strong>
 
                         <a href="mailto:antonin.lecocq@dauphine.eu">
                             antonin.lecocq@dauphine.eu
@@ -65,13 +141,21 @@
                     </div>
 
                     <div>
-                        <strong>Liens :</strong>
+                        <strong data-i18n="about.links">Liens:</strong>
 
-                        <a href="https://github.com/DJ4nto" target="_blank" rel="noopener">
+                        <a
+                            href="https://github.com/DJ4nto"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             GitHub
                         </a>
 
-                        <a href="https://www.linkedin.com/in/antonin-lecocq-0082042b5/" target="_blank" rel="noopener">
+                        <a
+                            href="https://www.linkedin.com/in/antonin-lecocq-0082042b5/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             LinkedIn
                         </a>
                     </div>
@@ -81,51 +165,95 @@
             <figure class="profile-picture">
                 <img
                     src="https://avatars.githubusercontent.com/u/105948898?v=4"
-                    alt="Portrait de Antonin Lecocq"
+                    alt="Portrait d’Antonin Lecocq"
                     width="500"
                     height="600"
+                    data-i18n-alt="about.profileAlt"
                 >
             </figure>
         </section>
 
-        <section class="content-section">
-            <h2>Actualités</h2>
+        <section class="content-section" aria-labelledby="news-heading">
+            <h2 id="news-heading" data-i18n="about.newsHeading">
+                Actualités
+            </h2>
 
             <div class="news-list">
-                <!-- DUPLIQUEZ UN ARTICLE POUR AJOUTER -->
                 <article class="news-item">
-                    <time>1er juin 2026 <br>- 17 juillet 2026</time>
+                    <time
+                        class="news-date"
+                        datetime="2026-06-01/2026-07-17"
+                        aria-label="Du 1er juin au 17 juillet 2026"
+                        data-i18n-aria-label="dates.internshipPeriod"
+                    >
+                        <span data-i18n="dates.june2026">
+                            1er juin 2026
+                        </span>
 
-                    <p>
-                        Stage de recherche portant sur l'étude du groupe de Lie \(SO(n)\) appliquée à l'analyse de formes.
-                        Rédaction d'un rapport « Étude du groupe de Lie \(SO(n)\) dans le cadre de l’analyse de formes », disponible sur <a href="https://github.com/DJ4nto/Etude_du_groupe_de_Lie_SO_dans_le_cadre_de_l-analyse_de_formes">ce dépôt</a>.
+                        <span
+                            class="news-date-end"
+                            data-i18n="dates.july2026End"
+                        >
+                            17 juillet 2026
+                        </span>
+                    </time>
+
+                    <p data-i18n-html="about.newsText">
+                        Stage de recherche portant sur l’étude du groupe de Lie
+                        $SO(n)$, appliquée à l’analyse de formes. Rédaction
+                        d’un rapport intitulé « Étude du groupe de Lie $SO(n)$
+                        dans le cadre de l’analyse de formes », disponible sur
+                        <a
+                            href="https://github.com/DJ4nto/Etude_du_groupe_de_Lie_SO_dans_le_cadre_de_l-analyse_de_formes"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >ce dépôt</a>.
                     </p>
                 </article>
             </div>
         </section>
 
-        <section class="content-section">
-            <h2>Publications</h2>
+        <section
+            class="content-section"
+            aria-labelledby="publications-heading"
+        >
+            <h2
+                id="publications-heading"
+                data-i18n="publication.heading"
+            >
+                Recherches
+            </h2>
 
             <article class="publication">
-                <div class="publication-badge">Rapport</div>
+                <div
+                    class="publication-badge"
+                    data-i18n="publication.badge"
+                >
+                    Rapport
+                </div>
 
                 <div class="publication-content">
-                    <h3>Étude du groupe de Lie \(SO(n)\) dans le cadre de l’analyse de formes</h3>
+                    <h3 data-i18n="publication.title">
+                        Étude du groupe de Lie $SO(n)$ dans le cadre de
+                        l’analyse de formes
+                    </h3>
 
-                    <p>
-                        <u>Antonin Lecocq</u> encadré par Rayane Mouhli
+                    <p data-i18n-html="publication.author">
+                        <strong class="publication-author">
+                            Antonin Lecocq
+                        </strong>,
+                        sous la direction de Rayane Mouhli
                     </p>
 
-                    <p class="publication-status">
-                        2026
-                    </p>
+                    <p class="publication-status">2026</p>
 
                     <div class="publication-actions">
                         <button
                             class="button bib-toggle"
                             type="button"
                             aria-expanded="false"
+                            aria-controls="bib-index-2026"
+                            data-i18n-aria-label="publication.openBib"
                         >
                             BIB
                         </button>
@@ -134,29 +262,53 @@
                             class="button"
                             href="assets/publication.pdf"
                             target="_blank"
-                            rel="noopener"
+                            rel="noopener noreferrer"
+                            aria-label="Ouvrir le rapport au format PDF"
+                            data-i18n-aria-label="publication.openPdf"
                         >
                             PDF
                         </a>
+
+                        <a
+                            class="button"
+                            href="https://github.com/DJ4nto/Etude_du_groupe_de_Lie_SO_dans_le_cadre_de_l-analyse_de_formes"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub
+                        </a>
                     </div>
 
-                    <div class="bib-panel" hidden>
+                    <div
+                        class="bib-panel"
+                        id="bib-index-2026"
+                        role="region"
+                        aria-label="Référence BibTeX"
+                        data-i18n-aria-label="publication.bibTitle"
+                        hidden
+                    >
                         <div class="bib-panel-header">
-                            <strong>Référence BibTeX</strong>
+                            <strong data-i18n="publication.bibTitle">
+                                Référence BibTeX
+                            </strong>
 
-                            <button class="bib-copy" type="button">
+                            <button
+                                class="bib-copy"
+                                type="button"
+                                data-i18n="publication.copy"
+                            >
                                 Copier
                             </button>
                         </div>
 
-                        <pre><code class="bib-code">@techreport{Lec25,
+                        <pre><code class="bib-code">@techreport{Lecocq2026,
     title = {Étude du groupe de Lie $SO(n)$ dans le cadre de l'analyse de formes},
-    author = {Lecocq, Antonin and Mouhli, Rayane},
+    author = {Lecocq, Antonin},
+    supervisor = {Mouhli, Rayane},
     institution = {Université Paris Cité, MAP5},
     year = {2026}
 }</code></pre>
                     </div>
-
                 </div>
             </article>
         </section>
@@ -165,11 +317,27 @@
     <footer class="site-footer">
         <div class="container">
             <p>
-                © <span data-current-year></span> Powered by <a href="https://dj4nto.github.io">DJ4nto</a>.
-                Dernière mise à jour : <span data-last-update></span>.
+                © <span data-current-year></span>
+
+                <span data-i18n="footer.powered">
+                    Powered by
+                </span>
+
+                <a
+                    href="https://dj4nto.github.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    DJ4nto
+                </a>.
+
+                <span data-i18n="footer.updateLabel">
+                    Dernière mise à jour :
+                </span>
+
+                <span data-last-update></span>.
             </p>
         </div>
     </footer>
-
 </body>
 </html>

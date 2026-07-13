@@ -7,23 +7,23 @@
     --muted: #a7aaae;
     --border: #3b3d40;
 
-    --accent: #56603d;
-    --accent-hover: #768253;
+    --accent: #788653;
+    --accent-hover: #94a467;
     --accent-text: #ffffff;
 
-    --header-height: 82px;
+    --header-height: 72px;
     --container-width: 1250px;
 
-    --radius: 6px;
+    --radius: 7px;
     --transition: 180ms ease;
 
     color-scheme: dark;
 }
 
 html[data-theme="light"] {
-    --background: #f7f7f7;
+    --background: #f7f7f5;
     --surface: #ffffff;
-    --surface-hover: #eeeeee;
+    --surface-hover: #eeeeea;
 
     --text: #202124;
     --muted: #62666c;
@@ -40,7 +40,9 @@ html[data-theme="light"] {
    RÉINITIALISATION
    ========================================================== */
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -49,8 +51,11 @@ html {
 }
 
 body {
-    margin: 0;
     min-height: 100vh;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
 
     background: var(--background);
     color: var(--text);
@@ -63,12 +68,16 @@ body {
         Arial,
         sans-serif;
 
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.55;
 
     transition:
         background-color var(--transition),
         color var(--transition);
+}
+
+main {
+    flex: 1;
 }
 
 img {
@@ -77,18 +86,25 @@ img {
 }
 
 button,
-a {
-    -webkit-tap-highlight-color: transparent;
+input,
+textarea,
+select {
+    font: inherit;
 }
 
-button {
-    font: inherit;
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 
 a {
     color: var(--accent);
     text-decoration: none;
-    transition: color var(--transition);
+
+    transition:
+        color var(--transition),
+        background-color var(--transition),
+        border-color var(--transition);
 }
 
 a:hover {
@@ -97,14 +113,14 @@ a:hover {
 }
 
 p {
-    margin: 0 0 1.25rem;
+    margin: 0 0 1.1rem;
 }
 
 h1,
 h2,
 h3 {
     margin-top: 0;
-    line-height: 1.18;
+    line-height: 1.2;
 }
 
 h1,
@@ -121,12 +137,16 @@ h3 {
    ========================================================== */
 
 .container {
-    width: min(calc(100% - 48px), var(--container-width));
+    width: min(
+        calc(100% - 40px),
+        var(--container-width)
+    );
+
     margin-inline: auto;
 }
 
 /* ==========================================================
-   EN-TÊTE ET NAVIGATION
+   NAVIGATION
    ========================================================== */
 
 .site-header {
@@ -136,9 +156,29 @@ h3 {
 
     min-height: var(--header-height);
 
-    background: color-mix(in srgb, var(--background) 94%, transparent);
     border-bottom: 1px solid var(--border);
+    background: var(--background);
+
+    -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
+}
+
+@supports (
+    background:
+        color-mix(
+            in srgb,
+            white 50%,
+            transparent
+        )
+) {
+    .site-header {
+        background:
+            color-mix(
+                in srgb,
+                var(--background) 94%,
+                transparent
+            );
+    }
 }
 
 .navbar {
@@ -147,12 +187,14 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    gap: 22px;
 }
 
 .brand {
+    flex-shrink: 0;
+
     color: var(--text);
-    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-size: clamp(1.2rem, 1.6vw, 1.55rem);
     white-space: nowrap;
 }
 
@@ -164,14 +206,14 @@ h3 {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: clamp(18px, 2.4vw, 38px);
+    gap: clamp(14px, 2vw, 28px);
 }
 
 .nav-links > a {
     position: relative;
 
     color: var(--text);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 }
 
 .nav-links > a:hover,
@@ -185,7 +227,7 @@ h3 {
 
     position: absolute;
     right: 0;
-    bottom: -14px;
+    bottom: -10px;
     left: 0;
 
     height: 2px;
@@ -193,37 +235,68 @@ h3 {
     background: var(--accent);
 }
 
-.theme-toggle,
-.menu-toggle {
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-toggle,
+.language-toggle,
+.theme-toggle {
+    padding: 0;
+
     border: 0;
     background: transparent;
     color: var(--text);
+
     cursor: pointer;
 }
 
+.menu-toggle {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    font-size: 1.45rem;
+    line-height: 1;
+}
+
+.language-toggle,
 .theme-toggle {
-    width: 45px;
-    height: 45px;
+    width: 38px;
+    height: 38px;
 
     display: grid;
     place-items: center;
 
     border-radius: 50%;
-    font-size: 1.55rem;
 
     transition:
         color var(--transition),
         background-color var(--transition);
 }
 
+.language-toggle {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.theme-toggle {
+    font-size: 1.25rem;
+}
+
+.menu-toggle:hover,
+.language-toggle:hover,
 .theme-toggle:hover {
     color: var(--accent);
     background: var(--surface-hover);
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 1.7rem;
 }
 
 /* ==========================================================
@@ -231,16 +304,16 @@ h3 {
    ========================================================== */
 
 .page {
-    padding-block: clamp(70px, 8vw, 130px);
+    padding-block: clamp(50px, 6vw, 85px);
 }
 
 .page-title {
-    margin-bottom: 80px;
-    font-size: clamp(3rem, 6vw, 5.3rem);
+    margin-bottom: 55px;
+    font-size: clamp(2.4rem, 5vw, 4rem);
 }
 
 .content-section {
-    margin-top: 75px;
+    margin-top: 55px;
 }
 
 .content-section:first-child {
@@ -248,60 +321,68 @@ h3 {
 }
 
 .content-section > h2 {
-    margin-bottom: 50px;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-}
-
-.heading-extra {
-    font-size: 0.72em;
-    font-weight: 500;
+    margin-bottom: 32px;
+    font-size: clamp(1.65rem, 3vw, 2.6rem);
 }
 
 /* ==========================================================
-   PROFIL / PAGE D'ACCUEIL
+   PROFIL
    ========================================================== */
 
 .profile-section {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 460px;
-    align-items: start;
-    gap: clamp(50px, 7vw, 100px);
-}
 
-.profile-content h1 {
-    margin-bottom: 35px;
-    font-size: clamp(3.6rem, 7vw, 6rem);
+    grid-template-columns:
+        minmax(0, 1fr)
+        340px;
+
+    align-items: start;
+
+    gap: clamp(35px, 5vw, 70px);
 }
 
 .profile-content {
-    font-size: clamp(1.05rem, 1.5vw, 1.45rem);
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+}
+
+.profile-content h1 {
+    margin-bottom: 24px;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
 }
 
 .profile-picture {
-    margin: 115px 0 0;
+    margin: 75px 0 0;
 }
 
 .profile-picture img {
     width: 100%;
-    max-height: 620px;
+    max-height: 460px;
+
     object-fit: cover;
 
     border-radius: var(--radius);
-    box-shadow: 0 20px 50px rgb(0 0 0 / 24%);
+
+    box-shadow:
+        0 20px 50px
+        rgb(0 0 0 / 24%);
 }
 
 .contact-list {
-    margin-top: 45px;
-    font-size: 0.95em;
+    margin-top: 30px;
+    font-size: 0.9em;
 }
 
 .contact-list > div {
-    display: grid;
-    grid-template-columns: 145px 1fr;
-    gap: 15px;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-bottom: 8px;
 }
 
 .contact-list strong {
+    min-width: 105px;
     font-weight: 700;
 }
 
@@ -311,17 +392,32 @@ h3 {
 
 .news-list {
     display: grid;
-    gap: 44px;
+    gap: 24px;
 }
 
 .news-item {
     display: grid;
-    grid-template-columns: 270px minmax(0, 1fr);
-    gap: 40px;
+    grid-template-columns: 145px minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
 }
 
-.news-item time {
-    font-weight: 700;
+.news-date {
+    padding-top: 3px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.news-date-end::before {
+    content: "– ";
+    color: var(--accent);
 }
 
 .news-item p {
@@ -333,58 +429,80 @@ h3 {
    ========================================================== */
 
 .year-heading {
-    margin: -25px 0 40px;
-    padding-top: 30px;
+    margin: -15px 0 28px;
+    padding-top: 20px;
 
     border-top: 1px solid var(--border);
 
-    color: color-mix(in srgb, var(--muted) 55%, transparent);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--muted);
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    font-weight: 300;
     text-align: right;
 }
 
 .publication {
     display: grid;
-    grid-template-columns: 210px minmax(0, 1fr);
+
+    grid-template-columns:
+        155px
+        minmax(0, 1fr);
+
     align-items: start;
-    gap: 56px;
+    gap: 35px;
 }
 
 .publication-badge {
     margin-top: 4px;
-    padding: 6px 15px;
+    padding: 5px 12px;
 
     border-radius: var(--radius);
 
     background: var(--accent);
     color: var(--accent-text);
 
+    font-size: 0.85rem;
     font-weight: 700;
     text-align: center;
     text-transform: lowercase;
 
-    box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
+    box-shadow:
+        0 8px 20px
+        rgb(0 0 0 / 20%);
+}
+
+.publication-content {
+    position: relative;
+    min-width: 0;
 }
 
 .publication-content h3 {
     max-width: 1000px;
     margin-bottom: 8px;
 
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-size: clamp(1.05rem, 1.7vw, 1.4rem);
 }
 
 .publication-content p {
     margin: 0 0 4px;
 }
 
+.publication-author {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
 .publication-status {
+    color: var(--muted);
     font-style: italic;
 }
 
 .publication-actions {
     display: flex;
-    gap: 18px;
-    margin-top: 18px;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 14px;
 }
 
 /* ==========================================================
@@ -392,8 +510,9 @@ h3 {
    ========================================================== */
 
 .button {
-    min-width: 100px;
-    padding: 9px 20px;
+    min-width: 80px;
+    min-height: 35px;
+    padding: 7px 15px;
 
     display: inline-flex;
     align-items: center;
@@ -402,9 +521,18 @@ h3 {
     border: 2px solid var(--text);
     border-radius: 4px;
 
+    background: transparent;
     color: var(--text);
-    font-size: 0.9rem;
+
+    font-family: inherit;
+    font-size: 0.8rem;
     font-weight: 650;
+    line-height: 1;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
 
     transition:
         color var(--transition),
@@ -416,6 +544,7 @@ h3 {
     border-color: var(--accent);
     background: var(--accent);
     color: var(--accent-text);
+
     text-decoration: none;
 }
 
@@ -425,22 +554,132 @@ h3 {
     color: var(--accent-text);
 }
 
+.primary-button:hover {
+    border-color: var(--accent-hover);
+    background: var(--accent-hover);
+}
+
+.bib-toggle[aria-expanded="true"] {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--accent-text);
+}
+
 /* ==========================================================
-   PRÉSENTATIONS
+   PANNEAU BIBTEX
    ========================================================== */
 
-.talk-list {
+.bib-panel {
+    width: 100%;
+    margin-top: 12px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    background: #30322e;
+    color: #e8e8e8;
+
+    box-shadow:
+        0 14px 35px
+        rgb(0 0 0 / 25%);
+}
+
+.bib-panel[hidden] {
+    display: none;
+}
+
+.bib-panel:not([hidden]) {
+    animation: open-bib-panel 180ms ease;
+}
+
+.bib-panel-header {
+    min-height: 42px;
+    padding: 8px 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    border-bottom:
+        1px solid
+        rgb(255 255 255 / 12%);
+
+    font-size: 0.82rem;
+}
+
+.bib-copy {
+    padding: 5px 11px;
+
+    border:
+        1px solid
+        rgb(255 255 255 / 35%);
+
+    border-radius: 4px;
+
+    background: transparent;
+    color: #e8e8e8;
+
+    font-size: 0.75rem;
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition),
+        border-color var(--transition),
+        color var(--transition);
+}
+
+.bib-copy:hover,
+.bib-copy.copied {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.bib-copy:disabled {
+    cursor: wait;
+}
+
+.bib-panel pre {
+    max-width: 100%;
     margin: 0;
-    padding-left: 40px;
+    padding: 18px 20px;
+
+    overflow-x: auto;
+
+    white-space: pre;
+    tab-size: 4;
 }
 
-.talk-list li {
-    margin-bottom: 32px;
-    padding-left: 5px;
+.bib-code {
+    color: #e4e4e4;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
+    font-size: 0.82rem;
+    line-height: 1.6;
+
+    cursor: text;
+    user-select: text;
 }
 
-.compact-list li {
-    margin-bottom: 12px;
+@keyframes open-bib-panel {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ==========================================================
@@ -452,7 +691,8 @@ h3 {
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    margin-bottom: 80px;
+
+    margin-bottom: 55px;
 }
 
 .title-row .page-title {
@@ -461,19 +701,33 @@ h3 {
 
 .timeline {
     display: grid;
-    gap: 30px;
+    gap: 20px;
 }
 
 .timeline-item {
     display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    gap: 45px;
 
-    padding: 30px;
+    grid-template-columns:
+        170px
+        minmax(0, 1fr);
+
+    gap: 30px;
+    padding: 22px;
 
     border: 1px solid var(--border);
     border-radius: var(--radius);
+
     background: var(--surface);
+
+    transition:
+        border-color var(--transition),
+        background-color var(--transition),
+        transform var(--transition);
+}
+
+.timeline-item:hover {
+    border-color: var(--accent);
+    background: var(--surface-hover);
 }
 
 .timeline-date {
@@ -494,68 +748,34 @@ h3 {
 }
 
 .skills {
+    margin: 0;
+    padding: 0;
+
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
+
+    list-style: none;
 }
 
-.skills span {
-    padding: 8px 16px;
+.skills li {
+    padding: 6px 12px;
 
     border: 1px solid var(--border);
     border-radius: 999px;
 
     background: var(--surface);
-}
 
-/* ==========================================================
-   ENSEIGNEMENT
-   ========================================================== */
-
-.course-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 30px;
-}
-
-.course-card {
-    padding: 32px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    background: var(--surface);
+    font-size: 0.85rem;
 
     transition:
-        transform var(--transition),
         border-color var(--transition),
         background-color var(--transition);
 }
 
-.course-card:hover {
-    transform: translateY(-4px);
+.skills li:hover {
     border-color: var(--accent);
     background: var(--surface-hover);
-}
-
-.course-level {
-    color: var(--accent);
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.course-card h3 {
-    margin: 14px 0;
-    font-size: 1.5rem;
-}
-
-.course-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 22px;
-    margin-top: 24px;
 }
 
 /* ==========================================================
@@ -563,12 +783,12 @@ h3 {
    ========================================================== */
 
 .site-footer {
-    padding-block: 28px;
+    padding-block: 20px;
 
     border-top: 1px solid var(--border);
 
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .site-footer p {
@@ -576,44 +796,87 @@ h3 {
 }
 
 /* ==========================================================
-   RESPONSIVE : TABLETTES
+   ACCESSIBILITÉ
    ========================================================== */
 
-@media (max-width: 1050px) {
-    :root {
-        --header-height: 85px;
-    }
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
 
-    body {
-        font-size: 18px;
-    }
-
-    .profile-section {
-        grid-template-columns: minmax(0, 1fr) 330px;
-        gap: 45px;
-    }
-
-    .profile-picture {
-        margin-top: 90px;
-    }
-
-    .news-item {
-        grid-template-columns: 190px minmax(0, 1fr);
-    }
-
-    .publication {
-        grid-template-columns: 170px minmax(0, 1fr);
-        gap: 35px;
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
 /* ==========================================================
-   RESPONSIVE : MOBILES
+   TABLETTES
+   ========================================================== */
+
+@media (max-width: 1050px) {
+    body {
+        font-size: 15px;
+    }
+
+    .profile-section {
+        grid-template-columns:
+            minmax(0, 1fr)
+            280px;
+
+        gap: 35px;
+    }
+
+    .profile-picture {
+        margin-top: 65px;
+    }
+
+    .news-item {
+        grid-template-columns: 135px minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .publication {
+        grid-template-columns:
+            135px
+            minmax(0, 1fr);
+
+        gap: 25px;
+    }
+}
+
+/* ==========================================================
+   MOBILES
    ========================================================== */
 
 @media (max-width: 760px) {
     .container {
-        width: min(calc(100% - 32px), var(--container-width));
+        width: min(
+            calc(100% - 28px),
+            var(--container-width)
+        );
+    }
+
+    .news-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .news-date {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4px;
+
+        font-size: 0.75rem;
+    }
+
+    .news-date-end::before {
+        content: "– ";
     }
 
     .navbar {
@@ -621,7 +884,7 @@ h3 {
     }
 
     .menu-toggle {
-        display: block;
+        display: grid;
     }
 
     .nav-links {
@@ -634,13 +897,21 @@ h3 {
         align-items: stretch;
         gap: 0;
 
-        padding: 15px;
+        padding: 14px;
 
         border: 1px solid var(--border);
-        border-radius: 0 0 var(--radius) var(--radius);
+
+        border-radius:
+            0
+            0
+            var(--radius)
+            var(--radius);
 
         background: var(--background);
-        box-shadow: 0 15px 30px rgb(0 0 0 / 25%);
+
+        box-shadow:
+            0 15px 30px
+            rgb(0 0 0 / 25%);
     }
 
     .nav-links.open {
@@ -664,16 +935,22 @@ h3 {
         transform: translateY(-50%);
     }
 
-    .theme-toggle {
-        margin: 6px 0 0 4px;
+    .nav-actions {
+        justify-content: flex-start;
+        gap: 10px;
+
+        margin-top: 7px;
+        padding: 7px 4px 0;
+
+        border-top: 1px solid var(--border);
     }
 
     .page {
-        padding-block: 55px 75px;
+        padding-block: 40px 55px;
     }
 
     .page-title {
-        margin-bottom: 50px;
+        margin-bottom: 38px;
     }
 
     .profile-section {
@@ -692,7 +969,8 @@ h3 {
 
     .profile-picture {
         order: 2;
-        width: min(100%, 350px);
+
+        width: min(100%, 280px);
         margin: 0 auto;
     }
 
@@ -706,346 +984,15 @@ h3 {
     }
 
     .contact-list > div {
-        grid-template-columns: 1fr;
+        align-items: flex-start;
+        flex-direction: column;
         gap: 2px;
+
         margin-bottom: 12px;
     }
 
-    .content-section {
-        margin-top: 60px;
-    }
-
-    .content-section > h2 {
-        margin-bottom: 35px;
-    }
-
-    .heading-extra {
-        display: block;
-        margin-top: 8px;
-    }
-
-    .news-item,
-    .publication,
-    .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 14px;
-    }
-
-    .publication-badge {
-        width: max-content;
-        min-width: 160px;
-    }
-
-    .year-heading {
-        text-align: left;
-    }
-
-    .course-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .title-row {
-        align-items: flex-start;
-        flex-direction: column;
-        margin-bottom: 50px;
-    }
-
-    .title-row .primary-button {
-        width: 100%;
-    }
-}
-
-/* ==========================================================
-   ACCESSIBILITÉ
-   ========================================================== */
-
-:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 4px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* ==========================================================
-   VERSION PLUS PETITE ET PLUS COMPACTE
-   ========================================================== */
-
-body {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-/* Navigation */
-
-.navbar {
-    gap: 22px;
-}
-
-.brand {
-    font-size: clamp(1.2rem, 1.6vw, 1.55rem);
-}
-
-.nav-links {
-    gap: clamp(14px, 2vw, 28px);
-}
-
-.nav-links > a {
-    font-size: 0.95rem;
-}
-
-.nav-links > a.active::after {
-    bottom: -10px;
-}
-
-.theme-toggle {
-    width: 38px;
-    height: 38px;
-    font-size: 1.25rem;
-}
-
-/* Contenu général */
-
-.container {
-    width: min(calc(100% - 40px), var(--container-width));
-}
-
-.page {
-    padding-block: clamp(50px, 6vw, 85px);
-}
-
-.page-title {
-    margin-bottom: 55px;
-    font-size: clamp(2.4rem, 5vw, 4rem);
-}
-
-.content-section {
-    margin-top: 55px;
-}
-
-.content-section > h2 {
-    margin-bottom: 32px;
-    font-size: clamp(1.65rem, 3vw, 2.6rem);
-}
-
-/* Présentation */
-
-.profile-section {
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: clamp(35px, 5vw, 70px);
-}
-
-.profile-content h1 {
-    margin-bottom: 24px;
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-}
-
-.profile-content {
-    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-}
-
-.profile-picture {
-    margin-top: 75px;
-}
-
-.profile-picture img {
-    max-height: 460px;
-}
-
-.contact-list {
-    margin-top: 30px;
-    font-size: 0.9em;
-}
-
-.contact-list > div {
-    grid-template-columns: 115px 1fr;
-    gap: 10px;
-}
-
-.contact-list > div {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 8px;
-    white-space: normal;
-}
-
-.contact-list > div a {
-    display: inline;
-}
-
-/* Actualités */
-
-.news-list {
-    gap: 28px;
-}
-
-.news-item {
-    grid-template-columns: 200px minmax(0, 1fr);
-    gap: 28px;
-}
-
-/* Publications */
-
-.year-heading {
-    margin: -15px 0 28px;
-    padding-top: 20px;
-    font-size: clamp(2rem, 4vw, 3.3rem);
-}
-
-.publication {
-    grid-template-columns: 155px minmax(0, 1fr);
-    gap: 35px;
-}
-
-.publication-badge {
-    padding: 5px 12px;
-    font-size: 0.85rem;
-}
-
-.publication-content h3 {
-    font-size: clamp(1.05rem, 1.7vw, 1.4rem);
-}
-
-.publication-actions {
-    gap: 12px;
-    margin-top: 14px;
-}
-
-/* Boutons */
-
-.button {
-    min-width: 80px;
-    padding: 7px 15px;
-    font-size: 0.8rem;
-}
-
-/* Présentations */
-
-.talk-list {
-    padding-left: 28px;
-}
-
-.talk-list li {
-    margin-bottom: 22px;
-}
-
-/* CV */
-
-.title-row {
-    margin-bottom: 55px;
-}
-
-.timeline {
-    gap: 20px;
-}
-
-.timeline-item {
-    grid-template-columns: 170px minmax(0, 1fr);
-    gap: 30px;
-    padding: 22px;
-}
-
-.skills {
-    gap: 10px;
-}
-
-.skills span {
-    padding: 6px 12px;
-    font-size: 0.85rem;
-}
-
-/* Enseignement */
-
-.course-grid {
-    gap: 20px;
-}
-
-.course-card {
-    padding: 24px;
-}
-
-.course-level {
-    font-size: 0.8rem;
-}
-
-.course-card h3 {
-    margin: 10px 0;
-    font-size: 1.25rem;
-}
-
-.course-links {
-    gap: 16px;
-    margin-top: 18px;
-}
-
-/* Pied de page */
-
-.site-footer {
-    padding-block: 20px;
-    font-size: 0.8rem;
-}
-
-
-/* ==========================================================
-   TABLETTES
-   ========================================================== */
-
-@media (max-width: 1050px) {
-    :root {
-        --header-height: 72px;
-    }
-
-    body {
-        font-size: 15px;
-    }
-
-    .profile-section {
-        grid-template-columns: minmax(0, 1fr) 280px;
-        gap: 35px;
-    }
-
-    .profile-picture {
-        margin-top: 65px;
-    }
-
-    .news-item {
-        grid-template-columns: 160px minmax(0, 1fr);
-    }
-
-    .publication {
-        grid-template-columns: 135px minmax(0, 1fr);
-        gap: 25px;
-    }
-}
-
-
-/* ==========================================================
-   MOBILES
-   ========================================================== */
-
-@media (max-width: 760px) {
-    .container {
-        width: min(calc(100% - 28px), var(--container-width));
-    }
-
-    .page {
-        padding-block: 40px 55px;
-    }
-
-    .page-title {
-        margin-bottom: 38px;
-    }
-
-    .profile-picture {
-        width: min(100%, 280px);
+    .contact-list strong {
+        min-width: 0;
     }
 
     .content-section {
@@ -1063,156 +1010,34 @@ body {
         gap: 10px;
     }
 
+    .news-date {
+        width: min(100%, 235px);
+    }
+
+    .news-item p {
+        padding-top: 5px;
+    }
+
     .publication-badge {
+        width: max-content;
         min-width: 130px;
     }
 
-    .course-card {
-        padding: 20px;
+    .year-heading {
+        text-align: left;
     }
 
     .title-row {
+        align-items: flex-start;
+        flex-direction: column;
+
         margin-bottom: 38px;
     }
-}
 
-/* ==========================================================
-   FENÊTRE BIBTEX
-   ========================================================== */
-
-/*
- * Nécessaire pour que la fenêtre puisse être placée
- * relativement au contenu de la publication.
- */
-.publication-content {
-    position: relative;
-}
-
-.bib-toggle {
-    cursor: pointer;
-}
-
-/* Bouton actif lorsque le BibTeX est ouvert */
-
-.bib-toggle[aria-expanded="true"] {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-/* Fenêtre du BibTeX */
-
-.bib-panel {
-    width: 100%;
-    margin-top: 12px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    background: #343631;
-    color: #e8e8e8;
-
-    box-shadow: 0 14px 35px rgb(0 0 0 / 25%);
-
-    overflow: hidden;
-}
-
-/*
- * Cette règle garantit que l'attribut HTML "hidden"
- * masque réellement la fenêtre.
- */
-.bib-panel[hidden] {
-    display: none;
-}
-
-.bib-panel-header {
-    min-height: 42px;
-    padding: 8px 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-
-    border-bottom: 1px solid rgb(255 255 255 / 12%);
-
-    font-size: 0.82rem;
-}
-
-.bib-copy {
-    padding: 5px 11px;
-
-    border: 1px solid rgb(255 255 255 / 35%);
-    border-radius: 4px;
-
-    background: transparent;
-    color: #e8e8e8;
-
-    font-size: 0.75rem;
-    cursor: pointer;
-
-    transition:
-        background-color var(--transition),
-        border-color var(--transition),
-        color var(--transition);
-}
-
-.bib-copy:hover {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: #ffffff;
-}
-
-/* Zone contenant la référence */
-
-.bib-panel pre {
-    max-width: 100%;
-    margin: 0;
-    padding: 18px 20px;
-
-    overflow-x: auto;
-
-    white-space: pre;
-    tab-size: 2;
-}
-
-.bib-code {
-    color: #e4e4e4;
-
-    font-family:
-        "SFMono-Regular",
-        Consolas,
-        "Liberation Mono",
-        Menlo,
-        monospace;
-
-    font-size: 0.82rem;
-    line-height: 1.6;
-
-    user-select: text;
-    cursor: text;
-}
-
-/* Petite animation d'ouverture */
-
-.bib-panel:not([hidden]) {
-    animation: openBibPanel 180ms ease;
-}
-
-@keyframes openBibPanel {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
+    .title-row .primary-button {
+        width: 100%;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive */
-
-@media (max-width: 760px) {
     .bib-panel {
         margin-top: 10px;
     }
@@ -1224,46 +1049,4 @@ body {
     .bib-code {
         font-size: 0.75rem;
     }
-}
-
-/* ==========================================================
-   BOUTONS BIB ET PDF IDENTIQUES
-   ========================================================== */
-
-.publication-actions .button {
-    min-width: 80px;
-    min-height: 35px;
-    padding: 7px 15px;
-
-    border: 2px solid var(--text);
-    border-radius: 4px;
-
-    background: transparent;
-    color: var(--text);
-
-    font-family: inherit;
-    font-size: 0.8rem;
-    font-weight: 650;
-    line-height: 1;
-
-    appearance: none;
-    -webkit-appearance: none;
-
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.publication-actions .button:hover {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: var(--accent-text);
-    text-decoration: none;
-}
-
-/* État ouvert du bouton BIB */
-
-.publication-actions .bib-toggle[aria-expanded="true"] {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: var(--accent-text);
 }
