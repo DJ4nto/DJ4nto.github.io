@@ -99,7 +99,7 @@ const translations = {
         "cv.experienceHeading": "Expériences professionnelles",
         "cv.at": "de l’",
 
-        "cv.exp1.date": "Juin 2026<br>– juillet 2026",
+        "cv.exp1.date": "Juin 2026",
         "cv.exp1.title": "Stage de recherche",
         "cv.exp1.lab": "Laboratoire",
 
@@ -212,7 +212,7 @@ const translations = {
         "cv.experienceHeading": "Professional experience",
         "cv.at": "laboratory at ",
 
-        "cv.exp1.date": "June 2026<br>– July 2026",
+        "cv.exp1.date": "June 2026",
         "cv.exp1.title": "Research internship",
         "cv.exp1.lab": "",
 
