@@ -123,7 +123,7 @@ const translations = {
         "cv.interest2": "Plongée sous-marine",
         "cv.interest3": "MAO",
 
-        "dates.june2026": "1er juin 2026",
+        "dates.june2026": "Juin 2026",
         "dates.july2026End": "17 juillet 2026",
         "dates.internshipPeriod": "Du 1er juin au 17 juillet 2026"
 
@@ -236,7 +236,7 @@ const translations = {
         "cv.interest2": "Scuba diving",
         "cv.interest3": "Music production",
 
-        "dates.june2026": "June 1, 2026",
+        "dates.june2026": "June 2026",
         "dates.july2026End": "July 17, 2026",
         "dates.internshipPeriod": "From June 1 to July 17, 2026"
     }
