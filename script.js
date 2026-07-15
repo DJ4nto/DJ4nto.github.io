@@ -200,7 +200,7 @@ const translations = {
         "cv.education1.title": "Bachelor’s degree – Applied Mathematics",
         "cv.education1.school": "Université Paris Dauphine – PSL",
         "cv.education1.desc":
-            "Interdisciplinary training in applied mathematics " +
+            "Interdisciplinary education in applied mathematics " +
             "and computer science.",
 
         "cv.education2.title": "French Baccalaureate",
