@@ -99,17 +99,17 @@ const translations = {
         "cv.experienceHeading": "Expériences professionnelles",
         "cv.at": "de l’",
 
-        "cv.exp1.date": "Juin 2026",
+        "cv.exp1.date": "Juin 2026<br>- Juil. 2026",
         "cv.exp1.title": "Stage de recherche",
         "cv.exp1.lab": "Laboratoire",
 
-        "cv.exp2.date": "Sept. 2025<br>– mai 2026",
+        "cv.exp2.date": "Sept. 2025<br>– Mai 2026",
         "cv.exp2.title": "Trésorier",
 
-        "cv.exp3.date": "Oct. 2024<br>– mai 2026",
+        "cv.exp3.date": "Oct. 2024<br>– Mai 2026",
         "cv.exp3.title": "Administrateur de sites web",
 
-        "cv.exp4.date": "Juillet 2025",
+        "cv.exp4.date": "Juil. 2025",
         "cv.exp4.title": "Stage en développement back-end",
 
         "locations.parisFrance": "Paris, France",
@@ -213,7 +213,7 @@ const translations = {
         "cv.experienceHeading": "Professional experience",
         "cv.at": "laboratory at ",
 
-        "cv.exp1.date": "June 2026",
+        "cv.exp1.date": "June 2026<br>- Jul. 2026",
         "cv.exp1.title": "Research internship",
         "cv.exp1.lab": "",
 
@@ -223,7 +223,7 @@ const translations = {
         "cv.exp3.date": "Oct. 2024<br>– May 2026",
         "cv.exp3.title": "Website administrator",
 
-        "cv.exp4.date": "July 2025",
+        "cv.exp4.date": "Jul. 2025",
         "cv.exp4.title": "Back-end development internship",
 
         "locations.parisFrance": "Paris, France",
