@@ -79,50 +79,8 @@ const translations = {
         "research.title": "Antonin Lecocq | Recherche",
         "research.pageTitle": "Recherche",
 
-        "cv.title": "Antonin Lecocq | CV",
-        "cv.pageTitle": "Curriculum vitæ",
-        "cv.download": "Télécharger le CV",
-
-        "cv.educationHeading": "Formation",
-        "cv.education1.title": "Licence – Mathématiques appliquées",
-        "cv.education1.school": "Université Paris Dauphine – PSL",
-        "cv.education1.desc":
-            "Formation pluridisciplinaire en mathématiques appliquées " +
-            "et en informatique.",
-
-        "cv.education2.title": "Baccalauréat général",
-        "cv.education2.school": "École Internationale Bilingue",
-        "cv.education2.desc":
-            "Spécialités mathématiques, physique-chimie et numérique " +
-            "et sciences informatiques. Mention Bien.",
-
-        "cv.experienceHeading": "Expériences professionnelles",
-        "cv.at": "de l’",
-
-        "cv.exp1.date": "Juin 2026<br>- Juil. 2026",
-        "cv.exp1.title": "Stage de recherche",
-        "cv.exp1.lab": "Laboratoire",
-
-        "cv.exp2.date": "Sept. 2025<br>– Mai 2026",
-        "cv.exp2.title": "Trésorier",
-
-        "cv.exp3.date": "Oct. 2024<br>– Mai 2026",
-        "cv.exp3.title": "Administrateur de sites web",
-
-        "cv.exp4.date": "Juil. 2025",
-        "cv.exp4.title": "Stage en développement back-end",
-
         "locations.parisFrance": "Paris, France",
         "locations.lisbonPortugal": "Lisbonne, Portugal",
-
-        "cv.skillsHeading": "Compétences",
-        "cv.languagesHeading": "Langues",
-        "cv.language1": "Français",
-        "cv.language2": "Anglais",
-        "cv.language3": "Italien",
-        "cv.interestsHeading": "Centres d’intérêts",
-        "cv.interest2": "Plongée sous-marine",
-        "cv.interest3": "MAO",
 
         "dates.june2026": "Juin 2026",
         "dates.july2026End": "17 juillet 2026",
@@ -193,50 +151,8 @@ const translations = {
         "research.title": "Antonin Lecocq | Research",
         "research.pageTitle": "Research",
 
-        "cv.title": "Antonin Lecocq | CV",
-        "cv.pageTitle": "Curriculum vitae",
-        "cv.download": "Download CV",
-
-        "cv.educationHeading": "Education",
-        "cv.education1.title": "Bachelor’s degree – Applied Mathematics",
-        "cv.education1.school": "Université Paris Dauphine – PSL",
-        "cv.education1.desc":
-            "Interdisciplinary education in applied mathematics " +
-            "and computer science.",
-
-        "cv.education2.title": "French Baccalaureate",
-        "cv.education2.school": "École Internationale Bilingue",
-        "cv.education2.desc":
-            "Specialisations in mathematics, physics and chemistry, " +
-            "and computer science. Awarded with honours.",
-
-        "cv.experienceHeading": "Professional experience",
-        "cv.at": "laboratory at ",
-
-        "cv.exp1.date": "June 2026<br>- Jul. 2026",
-        "cv.exp1.title": "Research internship",
-        "cv.exp1.lab": "",
-
-        "cv.exp2.date": "Sept. 2025<br>– May 2026",
-        "cv.exp2.title": "Treasurer",
-
-        "cv.exp3.date": "Oct. 2024<br>– May 2026",
-        "cv.exp3.title": "Website administrator",
-
-        "cv.exp4.date": "Jul. 2025",
-        "cv.exp4.title": "Back-end development internship",
-
         "locations.parisFrance": "Paris, France",
         "locations.lisbonPortugal": "Lisbon, Portugal",
-
-        "cv.skillsHeading": "Skills",
-        "cv.languagesHeading": "Languages",
-        "cv.language1": "French",
-        "cv.language2": "English",
-        "cv.language3": "Italian",
-        "cv.interestsHeading": "Interests",
-        "cv.interest2": "Scuba diving",
-        "cv.interest3": "Music production",
 
         "dates.june2026": "June 2026",
         "dates.july2026End": "July 17, 2026",
