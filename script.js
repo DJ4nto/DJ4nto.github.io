@@ -22,6 +22,8 @@ const translations = {
         "nav.cv": "CV",
         "nav.main": "Navigation principale",
 
+        "cv.href": "assets/CV_Antonin_Lecocq.pdf",
+
         "footer.powered": "Powered by",
         "footer.updateLabel": "Dernière mise à jour :",
 
@@ -93,6 +95,8 @@ const translations = {
         "nav.research": "Research",
         "nav.cv": "CV",
         "nav.main": "Main navigation",
+
+        "cv.href": "assets/Resume_Antonin_Lecocq.pdf",
 
         "footer.powered": "Powered by",
         "footer.updateLabel": "Last updated:",
@@ -361,6 +365,19 @@ function translateAttributes(language) {
         });
 }
 
+function translateHrefs(language) {
+    document
+        .querySelectorAll("[data-i18n-href]")
+        .forEach((element) => {
+            const key = element.dataset.i18nHref;
+            const value = translations[language]?.[key];
+
+            if (typeof value === "string") {
+                element.setAttribute("href", value);
+            }
+        });
+}
+
 async function refreshMathJax() {
     if (!window.MathJax?.startup?.promise) {
         return;
@@ -403,6 +420,7 @@ function applyLanguage(language, refreshMath = true) {
     translateTextContent(safeLanguage);
     translateHtmlContent(safeLanguage);
     translateAttributes(safeLanguage);
+    translateHrefs(safeLanguage);
     updateLastModified(safeLanguage);
 
     document.querySelectorAll("nav[aria-label]").forEach((nav) => {
