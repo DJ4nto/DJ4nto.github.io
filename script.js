@@ -22,7 +22,7 @@ const translations = {
         "nav.cv": "CV",
         "nav.main": "Navigation principale",
 
-        "cv.href": "assets/CV_Antonin_Lecocq.pdf",
+        "cv.href": "assets/CV_Antonin_LECOCQ.pdf",
 
         "footer.powered": "Powered by",
         "footer.updateLabel": "Dernière mise à jour :",
@@ -96,7 +96,7 @@ const translations = {
         "nav.cv": "CV",
         "nav.main": "Main navigation",
 
-        "cv.href": "assets/Resume_Antonin_Lecocq.pdf",
+        "cv.href": "assets/Resume_Antonin_LECOCQ.pdf",
 
         "footer.powered": "Powered by",
         "footer.updateLabel": "Last updated:",
