@@ -1,0 +1,33 @@
+<footer class="site-footer-mini">
+  <p>
+    © {{ 'now' | date: '%Y' }} Antonin Lecocq · Powered by
+    <a href="https://dj4nto.github.io" target="_blank" rel="noopener noreferrer">DJ4nto</a>.
+    Last updated: {{ site.time | date: '%B %Y' }}.
+  </p>
+</footer>
+
+<style>
+  html, body {
+    min-height: 100vh;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  .site-footer-mini {
+    margin-top: auto;
+    padding: 0.6rem 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    opacity: 0.7;
+    background: transparent;
+  }
+  .site-footer-mini p {
+    margin: 0;
+  }
+  .site-footer-mini a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>
