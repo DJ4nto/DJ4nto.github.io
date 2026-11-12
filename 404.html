@@ -29,6 +29,47 @@
     text-decoration: underline;
   }
 </style> <script>
+  function fixSelectedHeading() {
+    document.querySelectorAll(".post h2 a").forEach(function (a) {
+      if (/^selected (publications|papers)$/i.test(a.textContent.trim())) {
+        a.textContent = "Selected Publications";
+      }
+    });
+    document.querySelectorAll(".post h2").forEach(function (h) {
+      if (h.textContent.trim().toLowerCase() === "news") h.textContent = "News";
+    });
+  }
+  document.addEventListener("DOMContentLoaded", fixSelectedHeading);
+  window.addEventListener("load", fixSelectedHeading);
+</script> <script>
+  // Custom labels: key = date as the theme prints it, value = text to show
+  var NEWS_LABELS = {
+    "Jun 01, 2026": "June – July 2026"
+  };
+
+  function fixNewsDates() {
+    var months = {
+      Jan: "January", Feb: "February", Mar: "March", Apr: "April",
+      May: "May", Jun: "June", Jul: "July", Aug: "August",
+      Sep: "September", Oct: "October", Nov: "November", Dec: "December"
+    };
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    var node;
+    while ((node = walker.nextNode())) {
+      var raw = node.nodeValue.trim();
+      if (NEWS_LABELS[raw]) {
+        node.nodeValue = NEWS_LABELS[raw];
+        continue;
+      }
+      var m = raw.match(/^([A-Za-z]{3,9})\.?\s+\d{1,2},\s+(\d{4})$/);
+      if (m) {
+        node.nodeValue = (months[m[1].slice(0, 3)] || m[1]) + " " + m[2];
+      }
+    }
+  }
+  document.addEventListener("DOMContentLoaded", fixNewsDates);
+  window.addEventListener("load", fixNewsDates);
+</script> <script>
   window.alFolio = {
     compatBootstrap: false
   };
